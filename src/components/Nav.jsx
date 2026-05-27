@@ -14,9 +14,14 @@ export default function Nav() {
   const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth < 768)
 
   const closeMenu = () => setMenuOpen(false)
+  const toggleMenu = () => setMenuOpen(prev => !prev)
 
   React.useEffect(() => {
-    const handleResize = () => setIsSmallScreen(window.innerWidth < 768)
+    const handleResize = () => {
+      const small = window.innerWidth < 768
+      setIsSmallScreen(small)
+      if (!small) setMenuOpen(false)
+    }
     window.addEventListener('resize', handleResize)
     return () => window.removeEventListener('resize', handleResize)
   }, [])
@@ -56,8 +61,10 @@ export default function Nav() {
           </Link>
           {isSmallScreen && (
             <button
-              onClick={() => setMenuOpen(!menuOpen)}
+              type="button"
+              onClick={toggleMenu}
               className="text-charcoal text-3xl p-2 hover:text-yellow transition-colors bg-yellow rounded-lg"
+              aria-label={menuOpen ? 'Close menu' : 'Open menu'}
             >
               {menuOpen ? '✕' : '☰'}
             </button>
@@ -65,16 +72,19 @@ export default function Nav() {
         </div>
       </nav>
 
-      {isSmallScreen && menuOpen && (
-        <div className="fixed left-0 right-0 bottom-0 top-20 bg-charcoal text-white z-40 overflow-y-auto" style={{ display: 'block' }}>
-          <nav className="px-6 py-8 space-y-8 pt-10" style={{ visibility: 'visible' }}>
+      {menuOpen && isSmallScreen && (
+        <div 
+          className="absolute left-0 right-0 bg-charcoal text-white shadow-lg"
+          style={{ top: '80px' }}
+        >
+          <nav className="px-6 py-6 space-y-4">
             {NAV_LINKS.map(({ href, label, hash }) => (
               <div key={href}>
                 {hash ? (
                   <a
                     href={href}
                     onClick={closeMenu}
-                    className="text-2xl font-anton text-white hover:text-yellow transition-colors block py-2"
+                    className="text-lg font-anton text-white hover:text-yellow transition-colors block py-2"
                   >
                     {label}
                   </a>
@@ -83,7 +93,7 @@ export default function Nav() {
                     to={href}
                     onClick={closeMenu}
                     className={({ isActive }) =>
-                      `text-2xl font-anton block py-2 transition-colors ${isActive ? 'text-yellow' : 'text-white hover:text-yellow'}`
+                      `text-lg font-anton block py-2 transition-colors ${isActive ? 'text-yellow' : 'text-white hover:text-yellow'}`
                     }
                   >
                     {label}
@@ -91,18 +101,18 @@ export default function Nav() {
                 )}
               </div>
             ))}
-            <div className="pt-8 border-t border-white/20 space-y-4">
+            <div className="pt-4 border-t border-white/20 space-y-3 mt-4">
               <Link
                 to="/admin"
                 onClick={closeMenu}
-                className="block text-2xl font-anton text-white hover:text-yellow transition-colors py-2"
+                className="block text-lg font-anton text-white hover:text-yellow transition-colors py-2"
               >
                 ADMIN
               </Link>
               <Link
                 to="/verify"
                 onClick={closeMenu}
-                className="block w-full bg-yellow text-charcoal px-6 py-4 rounded-xl text-center font-bold text-xl hover:bg-white transition-brutalist"
+                className="block bg-yellow text-charcoal px-4 py-3 rounded-lg text-center font-bold hover:bg-white transition-brutalist"
               >
                 CHECK A NUMBER
               </Link>
