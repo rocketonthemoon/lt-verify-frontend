@@ -1,4 +1,6 @@
+import { useState } from 'react'
 import { Link, NavLink } from 'react-router-dom'
+import { Icon } from '@iconify/react'
 
 const NAV_LINKS = [
   { href: '/#how-it-works', label: 'HOW IT WORKS', hash: true },
@@ -9,6 +11,10 @@ const NAV_LINKS = [
 ]
 
 export default function Nav() {
+  const [menuOpen, setMenuOpen] = useState(false)
+
+  const closeMenu = () => setMenuOpen(false)
+
   return (
     <header className="fixed top-0 left-0 right-0 h-20 bg-white/90 backdrop-blur-md z-50 brutalist-border-b" style={{ borderBottom: '1px solid rgba(23,30,25,0.1)' }}>
       <nav className="max-w-7xl mx-auto h-full px-6 flex items-center justify-between">
@@ -38,12 +44,64 @@ export default function Nav() {
         </ul>
 
         <div className="flex items-center gap-6">
-          <Link to="/admin" className="text-sm font-medium hover:opacity-70 transition-opacity">ADMIN</Link>
-          <Link to="/verify" className="bg-charcoal text-white px-8 py-3 rounded-full text-sm font-bold hover:scale-105 transition-brutalist">
+          <Link to="/admin" className="hidden md:inline-block text-sm font-medium hover:opacity-70 transition-opacity">ADMIN</Link>
+          <Link to="/verify" className="hidden md:inline-block bg-charcoal text-white px-8 py-3 rounded-full text-sm font-bold hover:scale-105 transition-brutalist">
             CHECK A NUMBER
           </Link>
+          <button
+            onClick={() => setMenuOpen(!menuOpen)}
+            className="md:hidden text-charcoal p-2 hover:text-yellow transition-colors"
+          >
+            <Icon icon={menuOpen ? 'lucide:x' : 'lucide:menu'} className="text-2xl" />
+          </button>
         </div>
       </nav>
+
+      {menuOpen && (
+        <div className="md:hidden fixed inset-0 top-20 bg-white/95 backdrop-blur-md z-40 overflow-y-auto">
+          <nav className="px-6 py-8 space-y-6">
+            {NAV_LINKS.map(({ href, label, hash }) => (
+              <div key={href}>
+                {hash ? (
+                  <a
+                    href={href}
+                    onClick={closeMenu}
+                    className="text-lg font-anton text-charcoal hover:text-yellow transition-colors block"
+                  >
+                    {label}
+                  </a>
+                ) : (
+                  <NavLink
+                    to={href}
+                    onClick={closeMenu}
+                    className={({ isActive }) =>
+                      `text-lg font-anton block transition-colors ${isActive ? 'text-yellow' : 'text-charcoal hover:text-yellow'}`
+                    }
+                  >
+                    {label}
+                  </NavLink>
+                )}
+              </div>
+            ))}
+            <div className="pt-6 border-t border-charcoal/10 space-y-4">
+              <Link
+                to="/admin"
+                onClick={closeMenu}
+                className="block text-lg font-anton text-charcoal hover:text-yellow transition-colors"
+              >
+                ADMIN
+              </Link>
+              <Link
+                to="/verify"
+                onClick={closeMenu}
+                className="block w-full bg-charcoal text-white px-6 py-3 rounded-xl text-center font-bold hover:bg-yellow hover:text-charcoal transition-brutalist"
+              >
+                CHECK A NUMBER
+              </Link>
+            </div>
+          </nav>
+        </div>
+      )}
     </header>
   )
 }
