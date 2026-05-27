@@ -21,7 +21,7 @@ export default function Home() {
         <div className="max-w-5xl mx-auto text-center">
           <div className="inline-flex items-center gap-2 brutalist-border rounded-full px-4 py-1.5 mb-8">
             <span className="w-2 h-2 rounded-full bg-yellow animate-pulse" />
-            <span className="text-[10px] font-bold tracking-[0.2em] uppercase">Community-Verified Transfer Network</span>
+            <span className="text-[10px] font-bold tracking-[0.2em] uppercase">TransferShield - Secure Student Transfers</span>
           </div>
           <h1 className="font-anton text-6xl md:text-8xl lg:text-9xl mb-8">
             TRUST BEFORE<br />
@@ -206,8 +206,8 @@ export default function Home() {
       <footer className="bg-white py-20 px-6" style={{ borderTop: '1px solid rgba(23,30,25,0.1)' }}>
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-start gap-12">
           <div>
-            <Link to="/" className="font-anton text-4xl mb-6 block">LT VERIFY.</Link>
-            <p className="max-w-xs text-charcoal/60 font-medium">The trust layer for the Lithuanian student money transfer community. Verify before you send.</p>
+            <Link to="/" className="font-anton text-4xl mb-6 block">TRANSFERSHIELD.</Link>
+            <p className="max-w-xs text-charcoal/60 font-medium">The trust layer for student money transfers. Shield your transfers with verified ratings and community trust.</p>
           </div>
           <div className="grid grid-cols-2 md:grid-cols-3 gap-16">
             <div className="flex flex-col gap-4">

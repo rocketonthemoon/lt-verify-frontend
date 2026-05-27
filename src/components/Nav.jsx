@@ -30,7 +30,7 @@ export default function Nav() {
     <header className="fixed top-0 left-0 right-0 h-20 bg-white/90 backdrop-blur-md z-50 brutalist-border-b" style={{ borderBottom: '1px solid rgba(23,30,25,0.1)' }}>
       <nav className="max-w-7xl mx-auto h-full px-6 flex items-center justify-between">
         <Link to="/" className="font-anton text-3xl text-charcoal">
-          LT VERIFY<span className="text-yellow">.</span>
+          TRANSFERSHIELD<span className="text-yellow">.</span>
         </Link>
 
         <ul className="hidden md:flex items-center gap-10">
