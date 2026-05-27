@@ -66,8 +66,8 @@ export default function Nav() {
       </nav>
 
       {isSmallScreen && menuOpen && (
-        <div className="fixed inset-0 top-20 bg-white/95 backdrop-blur-md z-40 overflow-y-auto">
-          <nav className="px-6 py-8 space-y-6">
+        <div className="fixed inset-0 top-20 bg-white backdrop-blur-md z-40 overflow-y-auto">
+          <nav className="px-6 py-8 space-y-6 pt-10">
             {NAV_LINKS.map(({ href, label, hash }) => (
               <div key={href}>
                 {hash ? (
