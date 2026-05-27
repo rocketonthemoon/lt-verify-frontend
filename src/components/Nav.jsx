@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import React, { useState } from 'react'
 import { Link, NavLink } from 'react-router-dom'
 
 const NAV_LINKS = [
@@ -11,8 +11,15 @@ const NAV_LINKS = [
 
 export default function Nav() {
   const [menuOpen, setMenuOpen] = useState(false)
+  const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth < 768)
 
   const closeMenu = () => setMenuOpen(false)
+
+  React.useEffect(() => {
+    const handleResize = () => setIsSmallScreen(window.innerWidth < 768)
+    window.addEventListener('resize', handleResize)
+    return () => window.removeEventListener('resize', handleResize)
+  }, [])
 
   return (
     <header className="fixed top-0 left-0 right-0 h-20 bg-white/90 backdrop-blur-md z-50 brutalist-border-b" style={{ borderBottom: '1px solid rgba(23,30,25,0.1)' }}>
@@ -47,25 +54,27 @@ export default function Nav() {
           <Link to="/verify" className="hidden md:inline-block bg-charcoal text-white px-8 py-3 rounded-full text-sm font-bold hover:scale-105 transition-brutalist">
             CHECK A NUMBER
           </Link>
-          <button
-            onClick={() => setMenuOpen(!menuOpen)}
-            className="md:hidden text-charcoal p-2 hover:text-yellow transition-colors"
-          >
-            {menuOpen ? (
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-              </svg>
-            ) : (
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-              </svg>
-            )}
-          </button>
+          {isSmallScreen && (
+            <button
+              onClick={() => setMenuOpen(!menuOpen)}
+              className="text-charcoal p-2 hover:text-yellow transition-colors"
+            >
+              {menuOpen ? (
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              ) : (
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+              )}
+            </button>
+          )}
         </div>
       </nav>
 
-      {menuOpen && (
-        <div className="md:hidden fixed inset-0 top-20 bg-white/95 backdrop-blur-md z-40 overflow-y-auto">
+      {isSmallScreen && menuOpen && (
+        <div className="fixed inset-0 top-20 bg-white/95 backdrop-blur-md z-40 overflow-y-auto">
           <nav className="px-6 py-8 space-y-6">
             {NAV_LINKS.map(({ href, label, hash }) => (
               <div key={href}>
