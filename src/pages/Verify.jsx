@@ -116,6 +116,12 @@ export default function Verify() {
                     <Icon icon={verified ? 'lucide:shield-check' : 'lucide:shield-alert'} />
                     {verified ? 'VERIFIED MEMBER' : 'NOT VERIFIED'}
                   </div>
+                  {verified && result.vouchedByAdminName && (
+                    <div className={`inline-flex items-center gap-2 rounded-full px-4 py-2 text-xs font-bold mb-4 ml-2 bg-green-100 text-green-700`}>
+                      <Icon icon="lucide:check-circle" />
+                      Vouched by {result.vouchedByAdminName}
+                    </div>
+                  )}
                   <div className="flex items-center gap-3 mb-1">
                     <h2 className="font-anton text-5xl">{result.ownerName}</h2>
                     {verified && <Icon icon="lucide:badge-check" className="text-4xl text-yellow flex-shrink-0" title="Verified member" />}
