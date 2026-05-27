@@ -29,7 +29,7 @@ export default function Privacy() {
             </div>
             <h1 className="font-anton text-6xl md:text-7xl mb-6">PRIVACY<br /><span className="text-yellow">POLICY</span></h1>
             <p className="text-charcoal/60 font-medium text-lg leading-relaxed max-w-xl">
-              LT Verify is built for the Lithuanian student community. We take your privacy seriously and are fully compliant with the General Data Protection Regulation (GDPR).
+              TransferShield is built for the student community worldwide. We take your privacy seriously and are fully compliant with the General Data Protection Regulation (GDPR).
             </p>
             <p className="text-xs font-bold text-charcoal/30 uppercase tracking-widest mt-4">Last updated: May 2025</p>
           </div>
@@ -42,7 +42,7 @@ export default function Privacy() {
             <div>
               <p className="font-anton text-2xl text-white mb-1">GDPR COMPLIANT</p>
               <p className="text-sage/60 font-medium text-sm leading-relaxed">
-                As a service operated within the European Union, LT Verify complies with Regulation (EU) 2016/679 — the General Data Protection Regulation. You have full rights over your personal data at any time.
+                As a service operated within the European Union, TransferShield complies with Regulation (EU) 2016/679 — the General Data Protection Regulation. You have full rights over your personal data at any time.
               </p>
             </div>
           </div>
@@ -144,7 +144,7 @@ export default function Privacy() {
           </Section>
 
           <Section icon="lucide:cookie" title="COOKIES">
-            <p>LT Verify uses the minimum number of cookies necessary to operate:</p>
+            <p>TransferShield uses the minimum number of cookies necessary to operate:</p>
             <ul className="space-y-2 mt-3">
               {[
                 ['lt_consent', 'Remembers that you have accepted this cookie notice. Expires after 1 year. No personal data stored.'],
@@ -178,7 +178,7 @@ export default function Privacy() {
           </Section>
 
           <Section icon="lucide:user-check" title="DATA CONTROLLER">
-            <p>LT Verify is operated as a community project for Lithuanian students. To exercise any of your GDPR rights or report a privacy concern, reach out through the community WhatsApp group.</p>
+            <p>TransferShield is operated as a community project for students. To exercise any of your GDPR rights or report a privacy concern, reach out through the community.</p>
             <p className="mt-3 text-xs text-charcoal/40">You also have the right to lodge a complaint with your national data protection authority. In Lithuania: <strong className="text-charcoal/60">State Data Protection Inspectorate</strong> — <span className="font-mono">ada.lt</span>.</p>
           </Section>
 
