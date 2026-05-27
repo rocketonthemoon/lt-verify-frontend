@@ -242,6 +242,7 @@ export default function Home() {
               <Link to="/verify" className="text-sm font-medium hover:text-yellow">Verify a Number</Link>
               <Link to="/request" className="text-sm font-medium hover:text-yellow">Request Verification</Link>
               <Link to="/stats" className="text-sm font-medium hover:text-yellow">Stats</Link>
+              <Link to="/docs" className="text-sm font-medium hover:text-yellow">Documentation</Link>
             </div>
             <div className="flex flex-col gap-4">
               <span className="font-anton text-lg tracking-wider">COMMUNITY</span>
@@ -256,7 +257,7 @@ export default function Home() {
           </div>
         </div>
         <div className="max-w-7xl mx-auto mt-20 pt-10 flex justify-between items-center text-xs font-bold opacity-40 uppercase tracking-widest" style={{ borderTop: '1px solid rgba(23,30,25,0.1)' }}>
-          <span>© 2025 LT Transfer Verify · Lithuanian Student Community</span>
+          <span>© 2026 TransferShield · Mallu Dev Community</span>
         </div>
       </footer>
     </div>

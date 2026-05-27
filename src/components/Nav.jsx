@@ -7,6 +7,7 @@ const NAV_LINKS = [
   { href: '/rate', label: 'RATE', hash: false },
   { href: '/request', label: 'GET VERIFIED', hash: false },
   { href: '/stats', label: 'STATS', hash: false },
+  { href: '/docs', label: 'DOCS', hash: false },
 ]
 
 export default function Nav() {
@@ -73,11 +74,17 @@ export default function Nav() {
       </nav>
 
       {menuOpen && isSmallScreen && (
-        <div 
-          className="absolute left-0 right-0 bg-charcoal text-white shadow-lg"
-          style={{ top: '80px' }}
-        >
-          <nav className="px-6 py-6 space-y-4">
+        <>
+          <div
+            className="fixed inset-0 bg-black/50 z-40"
+            style={{ top: '80px' }}
+            onClick={closeMenu}
+          />
+          <div
+            className="absolute left-0 right-0 bg-charcoal text-white shadow-lg z-50"
+            style={{ top: '80px' }}
+          >
+            <nav className="px-6 py-6 space-y-4">
             {NAV_LINKS.map(({ href, label, hash }) => (
               <div key={href}>
                 {hash ? (
@@ -118,7 +125,8 @@ export default function Nav() {
               </Link>
             </div>
           </nav>
-        </div>
+          </div>
+        </>
       )}
     </header>
   )
