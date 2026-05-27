@@ -1,11 +1,26 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { Icon } from '@iconify/react'
 import Nav from '../components/Nav'
+import { api } from '../lib/api'
 
 export default function Home() {
   const [phone, setPhone] = useState('')
+  const [stats, setStats] = useState({ verifiedUsers: 0, totalRatings: 0 })
   const navigate = useNavigate()
+
+  useEffect(() => {
+    api.rating.stats().then(({ data }) => {
+      if (data) {
+        setStats({
+          verifiedUsers: data.verifiedUsers || 0,
+          totalRatings: data.totalRatings || 0,
+        })
+      }
+    }).catch(() => {
+      // Silently fail if API is not available
+    })
+  }, [])
 
   function handleSearch(e) {
     e.preventDefault()
@@ -43,6 +58,18 @@ export default function Home() {
             </button>
           </form>
           <p className="mt-4 text-sm font-medium text-charcoal/40">Enter any Lithuanian or Indian phone number to check their trust score</p>
+
+          {/* Stats Row */}
+          <div className="mt-16 flex flex-col sm:flex-row justify-center gap-8 pt-12 border-t border-charcoal/10">
+            <div className="text-center">
+              <div className="font-anton text-4xl md:text-5xl text-charcoal mb-2">{stats.verifiedUsers}</div>
+              <div className="text-sm font-bold uppercase tracking-widest text-charcoal/50">Verified Users</div>
+            </div>
+            <div className="text-center">
+              <div className="font-anton text-4xl md:text-5xl text-charcoal mb-2">{stats.totalRatings}</div>
+              <div className="text-sm font-bold uppercase tracking-widest text-charcoal/50">Community Ratings</div>
+            </div>
+          </div>
         </div>
       </section>
 
