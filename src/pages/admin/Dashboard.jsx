@@ -524,7 +524,7 @@ export default function AdminDashboard() {
         ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'} md:translate-x-0`}>
 
         <div className="flex items-center justify-between px-4 mb-2">
-          <Link to="/" className="font-anton text-2xl text-white">LT VERIFY<span className="text-yellow">.</span></Link>
+          <Link to="/" className="font-anton text-2xl text-white">TransferShield<span className="text-yellow">.</span></Link>
           <button onClick={() => setSidebarOpen(false)} className="md:hidden text-sage/40 hover:text-white transition-colors">
             <Icon icon="lucide:x" style={{ fontSize: 20 }} />
           </button>

@@ -19,7 +19,7 @@ export default function Maintenance() {
           WE'LL BE<br /><span className="text-yellow rotate-highlight">BACK SOON</span>
         </h1>
         <p className="text-charcoal/60 font-medium text-lg mb-10 leading-relaxed">
-          We're doing some work behind the scenes to make LT Verify faster and more reliable. Sit tight — we'll be back shortly.
+          We're doing some work behind the scenes to make TransferShield faster and more reliable. Sit tight — we'll be back shortly.
         </p>
         <div className="bg-charcoal/8 rounded-full h-2 mb-2 overflow-hidden">
           <div className="animate-progress h-full bg-yellow rounded-full" />
@@ -38,7 +38,7 @@ export default function Maintenance() {
             </div>
           ))}
         </div>
-        <p className="text-xs font-bold text-charcoal/30 uppercase tracking-widest">LT VERIFY. · Lithuanian Student Transfer Community</p>
+        <p className="text-xs font-bold text-charcoal/30 uppercase tracking-widest">TransferShield. · Secure Student Transfers</p>
       </div>
     </div>
   )

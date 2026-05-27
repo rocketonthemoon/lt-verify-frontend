@@ -41,7 +41,7 @@ export default function AdminLogin() {
     <div className="min-h-screen bg-charcoal flex flex-col items-center justify-center px-6">
       <div className="w-full max-w-md">
         <div className="text-center mb-12">
-          <Link to="/" className="font-anton text-4xl text-white inline-block mb-2">LT VERIFY<span className="text-yellow">.</span></Link>
+          <Link to="/" className="font-anton text-4xl text-white inline-block mb-2">TransferShield<span className="text-yellow">.</span></Link>
           <p className="text-sage/60 text-sm font-medium uppercase tracking-widest">Admin Panel</p>
         </div>
 

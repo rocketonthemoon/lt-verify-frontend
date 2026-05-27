@@ -21,7 +21,7 @@ export default function Home() {
         <div className="max-w-5xl mx-auto text-center">
           <div className="inline-flex items-center gap-2 brutalist-border rounded-full px-4 py-1.5 mb-8">
             <span className="w-2 h-2 rounded-full bg-yellow animate-pulse" />
-            <span className="text-[10px] font-bold tracking-[0.2em] uppercase">TransferShield - Secure Student Transfers</span>
+            <span className="text-[10px] font-bold tracking-[0.2em] uppercase">Secure Student Transfers</span>
           </div>
           <h1 className="font-anton text-6xl md:text-8xl lg:text-9xl mb-8">
             TRUST BEFORE<br />
@@ -69,7 +69,7 @@ export default function Home() {
         </div>
         <div className="flex-1 bg-dark-gray text-white p-12 lg:p-24 flex flex-col justify-center border-l-8 border-yellow">
           <span className="font-medium text-yellow tracking-widest text-sm mb-6 uppercase">The Solution</span>
-          <h2 className="font-anton text-6xl mb-12 text-yellow">THE LT VERIFY WAY</h2>
+          <h2 className="font-anton text-6xl mb-12 text-yellow">THE TRANSFERSHIELD WAY</h2>
           <ul className="space-y-6">
             {[
               ['Admin-Verified Members', 'Every verified number is manually approved by community admins before it appears.'],
@@ -206,7 +206,7 @@ export default function Home() {
       <footer className="bg-white py-20 px-6" style={{ borderTop: '1px solid rgba(23,30,25,0.1)' }}>
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-start gap-12">
           <div>
-            <Link to="/" className="font-anton text-4xl mb-6 block">TRANSFERSHIELD.</Link>
+            <Link to="/" className="font-anton text-4xl mb-6 block">TransferShield.</Link>
             <p className="max-w-xs text-charcoal/60 font-medium">The trust layer for student money transfers. Shield your transfers with verified ratings and community trust.</p>
           </div>
           <div className="grid grid-cols-2 md:grid-cols-3 gap-16">

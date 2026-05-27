@@ -24,7 +24,7 @@ export default function NotFound() {
             VERIFY A NUMBER <Icon icon="lucide:search" />
           </Link>
         </div>
-        <p className="mt-12 text-xs font-bold text-sage/20 uppercase tracking-widest">LT VERIFY. · Lithuanian Student Transfer Community</p>
+        <p className="mt-12 text-xs font-bold text-sage/20 uppercase tracking-widest">TransferShield. · Secure Student Transfers</p>
       </div>
     </div>
   )
