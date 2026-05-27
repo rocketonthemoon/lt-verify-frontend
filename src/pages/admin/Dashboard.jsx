@@ -298,7 +298,10 @@ function HistoryTab({ onLogout, isSuperAdmin, adminId }) {
                   return (
                     <tr key={t._id} className="hover:bg-[#f8f9fa] transition-colors">
                       <td className="px-5 py-4">
-                        <code className="text-xs font-mono text-charcoal/60">{t.token}…</code>
+                        <code className="text-xs font-mono text-charcoal/60 break-all">{t.token.slice(0, 16)}…</code>
+                        <button onClick={() => navigator.clipboard.writeText(t.token)} title="Copy full token" className="ml-2 text-charcoal/30 hover:text-yellow transition-colors align-middle">
+                          <Icon icon="lucide:copy" style={{ fontSize: 14 }} />
+                        </button>
                       </td>
                       <td className="px-5 py-4 font-medium capitalize">{t.purpose ?? 'rating'}</td>
                       <td className="px-5 py-4 text-charcoal/60 whitespace-nowrap">{t.issuedByAdmin?.username ?? '—'}</td>
@@ -357,6 +360,14 @@ function CreateAdminTab({ onLogout }) {
     loadAdmins()
   }
 
+  async function handleToggleAdminStatus(adminId, isActive) {
+    if (!confirm(`${isActive ? 'Reactivate' : 'Deactivate'} this admin?`)) return
+    const { ok, status: s } = await api.admin.toggleAdminStatus(adminId, isActive)
+    if (s === 401) { onLogout(); return }
+    if (!ok) return
+    loadAdmins()
+  }
+
   return (
     <div>
       <div className="mb-8">
@@ -406,26 +417,40 @@ function CreateAdminTab({ onLogout }) {
           {listState === 'ready' && (
             <div className="space-y-3 max-h-96 overflow-y-auto">
               {admins.map(a => (
-                <div key={a._id} className="bg-white/5 rounded-xl px-4 py-3">
+                <div key={a._id} className={`rounded-xl px-4 py-3 ${a.isActive ? 'bg-white/5' : 'bg-red-500/10 border border-red-500/30'}`}>
                   <div className="flex items-center justify-between gap-3 mb-2">
-                    <div>
-                      <p className="text-white font-bold text-sm">{a.username}</p>
+                    <div className="flex-1">
+                      <div className="flex items-center gap-2">
+                        <p className="text-white font-bold text-sm">{a.username}</p>
+                        {!a.isActive && <span className="text-xs font-bold px-2 py-0.5 rounded bg-red-500/30 text-red-300">INACTIVE</span>}
+                      </div>
                       <p className="text-sage/40 text-xs font-medium">{a.email}</p>
                     </div>
                     <span className={`text-xs font-bold px-3 py-1 rounded-full whitespace-nowrap ${a.role === 'super_admin' ? 'bg-yellow/20 text-yellow' : 'bg-white/10 text-sage/60'}`}>
                       {a.role === 'super_admin' ? 'Super Admin' : 'Admin'}
                     </span>
                   </div>
-                  <div className="flex items-center gap-4 mt-1">
-                    <span className="flex items-center gap-1 text-xs font-bold text-green-400">
-                      <Icon icon="lucide:check-circle" style={{ fontSize: 13 }} /> {a.verificationsApproved ?? 0} approved
-                    </span>
-                    <span className="flex items-center gap-1 text-xs font-bold text-red-400">
-                      <Icon icon="lucide:x-circle" style={{ fontSize: 13 }} /> {a.verificationsRejected ?? 0} rejected
-                    </span>
-                    <span className="flex items-center gap-1 text-xs font-bold text-sage/40">
-                      <Icon icon="lucide:key" style={{ fontSize: 13 }} /> {a.tokensIssued ?? 0} tokens
-                    </span>
+                  <div className="flex items-center justify-between gap-2 mt-3">
+                    <div className="flex items-center gap-4">
+                      <span className="flex items-center gap-1 text-xs font-bold text-green-400">
+                        <Icon icon="lucide:check-circle" style={{ fontSize: 13 }} /> {a.verificationsApproved ?? 0} approved
+                      </span>
+                      <span className="flex items-center gap-1 text-xs font-bold text-red-400">
+                        <Icon icon="lucide:x-circle" style={{ fontSize: 13 }} /> {a.verificationsRejected ?? 0} rejected
+                      </span>
+                      <span className="flex items-center gap-1 text-xs font-bold text-sage/40">
+                        <Icon icon="lucide:key" style={{ fontSize: 13 }} /> {a.tokensIssued ?? 0} tokens
+                      </span>
+                    </div>
+                    {a.role !== 'super_admin' && (
+                      <button
+                        onClick={() => handleToggleAdminStatus(a._id, !a.isActive)}
+                        className={`text-xs font-bold px-3 py-1 rounded flex items-center gap-1 ${a.isActive ? 'text-red-400 hover:bg-red-500/20' : 'text-green-400 hover:bg-green-500/20'}`}
+                      >
+                        <Icon icon={a.isActive ? 'lucide:power' : 'lucide:check'} style={{ fontSize: 12 }} />
+                        {a.isActive ? 'Deactivate' : 'Reactivate'}
+                      </button>
+                    )}
                   </div>
                 </div>
               ))}

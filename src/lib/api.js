@@ -1,4 +1,4 @@
-const API_BASE = 'http://localhost:4000/api'
+const API_BASE = import.meta.env.VITE_API_BASE || 'http://localhost:4000/api'
 
 async function request(path, opts = {}) {
   const { headers: extraHeaders, ...restOpts } = opts
@@ -33,5 +33,6 @@ export const api = {
     deactivateAll: () => request('/admin/tokens/deactivate-all', { method: 'POST' }),
     listAdmins: () => request('/admin/admins'),
     createAdmin: (body) => request('/admin/admins/create', { method: 'POST', body: JSON.stringify(body) }),
+    toggleAdminStatus: (adminId, isActive) => request(`/admin/admins/${adminId}/toggle-status`, { method: 'POST', body: JSON.stringify({ isActive }) }),
   },
 }
