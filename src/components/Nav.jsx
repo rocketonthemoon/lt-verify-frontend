@@ -66,15 +66,15 @@ export default function Nav() {
       </nav>
 
       {isSmallScreen && menuOpen && (
-        <div className="fixed inset-0 top-20 bg-white backdrop-blur-md z-40 overflow-y-auto">
-          <nav className="px-6 py-8 space-y-6 pt-10">
+        <div className="fixed left-0 right-0 bottom-0 top-20 bg-charcoal text-white z-40 overflow-y-auto">
+          <nav className="px-6 py-8 space-y-8 pt-10">
             {NAV_LINKS.map(({ href, label, hash }) => (
               <div key={href}>
                 {hash ? (
                   <a
                     href={href}
                     onClick={closeMenu}
-                    className="text-lg font-anton text-charcoal hover:text-yellow transition-colors block"
+                    className="text-2xl font-anton text-white hover:text-yellow transition-colors block py-2"
                   >
                     {label}
                   </a>
@@ -83,7 +83,7 @@ export default function Nav() {
                     to={href}
                     onClick={closeMenu}
                     className={({ isActive }) =>
-                      `text-lg font-anton block transition-colors ${isActive ? 'text-yellow' : 'text-charcoal hover:text-yellow'}`
+                      `text-2xl font-anton block py-2 transition-colors ${isActive ? 'text-yellow' : 'text-white hover:text-yellow'}`
                     }
                   >
                     {label}
@@ -91,18 +91,18 @@ export default function Nav() {
                 )}
               </div>
             ))}
-            <div className="pt-6 border-t border-charcoal/10 space-y-4">
+            <div className="pt-8 border-t border-white/20 space-y-4">
               <Link
                 to="/admin"
                 onClick={closeMenu}
-                className="block text-lg font-anton text-charcoal hover:text-yellow transition-colors"
+                className="block text-2xl font-anton text-white hover:text-yellow transition-colors py-2"
               >
                 ADMIN
               </Link>
               <Link
                 to="/verify"
                 onClick={closeMenu}
-                className="block w-full bg-charcoal text-white px-6 py-3 rounded-xl text-center font-bold hover:bg-yellow hover:text-charcoal transition-brutalist"
+                className="block w-full bg-yellow text-charcoal px-6 py-4 rounded-xl text-center font-bold text-xl hover:bg-white transition-brutalist"
               >
                 CHECK A NUMBER
               </Link>
