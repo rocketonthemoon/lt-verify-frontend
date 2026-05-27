@@ -66,8 +66,8 @@ export default function Nav() {
       </nav>
 
       {isSmallScreen && menuOpen && (
-        <div className="fixed left-0 right-0 bottom-0 top-20 bg-charcoal text-white z-40 overflow-y-auto">
-          <nav className="px-6 py-8 space-y-8 pt-10">
+        <div className="fixed left-0 right-0 bottom-0 top-20 bg-charcoal text-white z-40 overflow-y-auto" style={{ display: 'block' }}>
+          <nav className="px-6 py-8 space-y-8 pt-10" style={{ visibility: 'visible' }}>
             {NAV_LINKS.map(({ href, label, hash }) => (
               <div key={href}>
                 {hash ? (
